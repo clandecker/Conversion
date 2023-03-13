@@ -1,0 +1,67 @@
+import java.lang.Math.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+public class Main {
+	public static long binToDec(String bin) {
+		long dec=0;
+		//System.out.print(bin.length()+ "\n");
+		for (double i=0; i<=bin.length()-1; i++) {
+			//getting the digit (starting from rightmost)
+			long dig = (long)(Integer.parseInt(bin.charAt(bin.length()-1-(int)i)+""));
+			//adding the powers of 2
+			long temp=(long)Math.pow(2, i);
+			//System.out.print(" temp=" +temp);
+			dec+=(dig*Math.pow(2.0,(i)));
+			//System.out.print(temp*Math.pow(2,(i))+ " + ");
+		}	
+		return dec;
+		
+	}
+	
+	
+	public static String decToBin(String nStr) {
+		long n=Long.parseLong(nStr);
+		String backwards="";
+		while(n>0) {
+			if(n%2==0) {
+				backwards=backwards+"0";
+				n=n/2;
+			}
+			else {
+				backwards=backwards+"1";
+				n=(n-1)/2;
+			}
+		}
+		String forwards="";
+		for (int i=backwards.length()-1; i>=0;i--)
+			forwards=forwards+backwards.charAt(i);
+		return forwards;
+		
+		
+	}
+	
+	public static void main (String[]args) {
+		Scanner keyboard = new Scanner(System.in);
+		System.out.println("To convert from binary to decimal, please type 2. To convert from decimal to binary, please type 10.");
+		int output=keyboard.nextInt();
+		System.out.println("What number would you like to convert?");
+		String num=keyboard.next();
+		if (output==2) {
+			System.out.println("\nYour decimal number is: "+binToDec(num));
+		}
+		else if (output==10) {
+			System.out.println("\nYour binary number is: "+decToBin(num));
+		}
+		else {
+			System.out.println("Error");
+		}
+		/*
+		String l="1101000101110111000101101001011010";
+		System.out.println("\n"+binToDec(l));
+		
+		String ll="123456789123";
+		System.out.println("\n"+decToBin(ll));*/
+		
+	}
+
+}
